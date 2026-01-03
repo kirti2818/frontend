@@ -1,10 +1,9 @@
 "use client";
-
 import AuthCard from "../../components/AuthCard";
-import { useState } from "react";
+import Signup from "./signup";
 
 export default function SignupPage() {
-  const [showPassword, setShowPassword] = useState(false);
+  const {showPassword,setShowPassword,handleFormData,handleSubmit,formData} = Signup()
 
   return (
     <AuthCard
@@ -12,7 +11,7 @@ export default function SignupPage() {
       subtitle="Join us in a minute"
       altLink={{ href: "/login", label: "Sign in", text: "Already have an account?" }}
     >
-      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="space-y-1.5">
           <label htmlFor="name" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
             Full name
@@ -21,10 +20,11 @@ export default function SignupPage() {
             id="name"
             name="name"
             type="text"
-            required
-            placeholder="Jane Doe"
+            placeholder="Enter Your Name"
             className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            onChange={handleFormData}
           />
+          {formData.name.error && <p className="text-red-500 text-sm">Name is required.</p>}
         </div>
 
         <div className="space-y-1.5">
@@ -35,10 +35,11 @@ export default function SignupPage() {
             id="email"
             name="email"
             type="email"
-            required
-            placeholder="you@example.com"
+            placeholder="Enter Your Email"
             className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            onChange={handleFormData}
           />
+          {formData.email.error && <p className="text-red-500 text-sm">Email is required.</p>}
         </div>
 
         <div className="space-y-1.5">
@@ -58,10 +59,11 @@ export default function SignupPage() {
             id="password"
             name="password"
             type={showPassword ? "text" : "password"}
-            required
             placeholder="At least 8 characters"
             className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            onChange={handleFormData}
           />
+          {formData.password.error && <p className="text-red-500 text-sm">Password is required.</p>}
         </div>
 
         <button
