@@ -17,20 +17,20 @@ export default function LoginPage() {
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-1.5">
           <label htmlFor="email" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
-            Email
+            Email or User Name
           </label>
           <Controller
-            name="email"
+            name="detail"
             control={control}
-            rules = {{required:'Email is Required'}}
+            rules = {{required:'Email or User Name is Required'}}
             render={({ field: { onChange, value } }) => {
               return (
                 <>
                   <input
                     id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter Your Email"
+                    name="detail"
+                    type="text"
+                    placeholder="Enter Your Email or User Name"
                     className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
                     onChange={onChange}
                     value={value ?? ""}

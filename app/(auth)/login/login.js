@@ -1,8 +1,10 @@
 import { useState } from "react";
+import useLogin from "../../hooks/mutations/useLogin";
 
 const Login = ()=>{
     // const [formData,setFormData] = useState({email : {value : '', error : false}, password : {value : '', error : false}});
     const [showPassword, setShowPassword] = useState(false);
+    const {mutate : loginUser} = useLogin()
 
     // const handleFormData = (e)=>{
     //      e.preventDefault();
@@ -15,7 +17,7 @@ const Login = ()=>{
         // if(!formData.email.value || !formData.password.value){
         //     return setFormData({email : {...formData.email , error : !formData.email.value}, password : {...formData.password, error : !formData.password.value}})
         // }
-        console.log("FORM SUBMITTED : ", formData);
+        loginUser(formData)
     }
     
     return {showPassword, setShowPassword,onSubmit};

@@ -28,6 +28,21 @@ export default function SignupPage() {
         </div>
 
         <div className="space-y-1.5">
+          <label htmlFor="user_name" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            User Name
+          </label>
+          <input
+            id="user_name"
+            name="user_name"
+            type="text"
+            placeholder="Enter Your User Name"
+            className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+            onChange={handleFormData}
+          />
+          {formData.user_name.error && <p className="text-red-500 text-sm">User Name is required.</p>}
+        </div>
+
+        <div className="space-y-1.5">
           <label htmlFor="email" className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
             Email
           </label>

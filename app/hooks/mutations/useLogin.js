@@ -1,0 +1,32 @@
+import { useMutation } from "@tanstack/react-query";
+import api from "../../api";
+import { toast } from "react-toastify";
+
+const useLogin = () => {
+    const mutate = useMutation({
+        mutationFn : async(data)=>{
+            const response = await api.post('/auth/login',data)
+            return response.data;
+        },
+        onSuccess:(data)=>{
+            toast(data.message,{
+                position:'top-right',
+                type:'success',
+                autoClose: 5000,
+
+            })
+        },
+        onError:(data)=>{
+            toast(data.response.data.message,{
+                position:'top-right',
+                type:'error',
+                autoClose: 5000,
+
+            })
+        }
+    })
+    return mutate;
+ 
+}
+
+export default useLogin;
