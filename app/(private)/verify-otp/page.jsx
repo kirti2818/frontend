@@ -4,7 +4,7 @@ import VerifyOtp from "./verify-otp";
 import OtpInput from "react-otp-input";
 
 export default function VerifyOtpPage() {
-    const { handleSubmit,handleChange, otp } = VerifyOtp();
+    const { handleSubmit,handleChange, otp,handleResendOtp } = VerifyOtp();
     return (
         <AuthCard
             title="Verify OTP"
@@ -19,13 +19,13 @@ export default function VerifyOtpPage() {
                     <OtpInput
                         value={otp}
                         onChange={handleChange}
-                        numInputs={6}
+                        numInputs={4}
                         shouldAutoFocus
                         isInputNum
                         inputType="tel"
                         containerStyle={{
                             display: "grid",
-                            gridTemplateColumns: `repeat(${6}, 1fr)`,
+                            gridTemplateColumns: `repeat(${4}, 1fr)`,
                             gap: "clamp(0.5rem, 2vw, 0.75rem)",
                             maxWidth: "32rem",
                             marginInline: "auto",
@@ -47,7 +47,7 @@ export default function VerifyOtpPage() {
 
                 <div className="flex items-center justify-between text-xs text-zinc-600 dark:text-zinc-400">
                     <span>Didn’t get the code?</span>
-                    <button type="button" className="font-medium text-blue-600 hover:underline">
+                    <button onClick={handleResendOtp} type="button" className="font-medium text-blue-600 hover:underline">
                         Resend code
                     </button>
                 </div>

@@ -1,0 +1,29 @@
+import { useMutation } from "@tanstack/react-query"
+import api from "../../api"
+import { toast } from "react-toastify"
+
+const useResendOtp = ()=>{
+    const mutate = useMutation({
+        mutationFn : async(data)=>{
+            const response = await api.post('/auth/resend-otp',data)
+            return response.data;
+        },
+        onSuccess:(data)=>{
+            toast(data.message,{
+                position:"top-right",
+                type:"success",
+                autoClose:5000
+            })
+        },
+        onError:(error)=>{
+            toast(error.response.data.message,{
+                position:'top-right',
+                type:'success',
+                autoClose : 5000
+            })
+        }
+    })
+    return mutate;
+}
+
+export default useResendOtp;
