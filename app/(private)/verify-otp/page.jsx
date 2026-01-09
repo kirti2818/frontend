@@ -19,17 +19,27 @@ export default function VerifyOtpPage() {
                     <OtpInput
                         value={otp}
                         onChange={handleChange}
-                        numInputs={4}
+                        numInputs={6}
                         shouldAutoFocus
                         isInputNum
                         inputType="tel"
-                        containerStyle="grid grid-cols-6 gap-2 sm:gap-3"
+                        containerStyle={{
+                            display: "grid",
+                            gridTemplateColumns: `repeat(${6}, 1fr)`,
+                            gap: "clamp(0.5rem, 2vw, 0.75rem)",
+                            maxWidth: "32rem",
+                            marginInline: "auto",
+                        }}
                         renderInput={(props, idx) => (
                             <input
                                 {...props}
                                 id={`otp-${idx + 1}`}
                                 aria-label={`Digit ${idx + 1}`}
-                                className="h-12 w-10 rounded-lg border border-zinc-300 bg-white text-center text-base text-zinc-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 sm:h-14 sm:w-12 sm:text-lg"
+                                aria-invalid={true}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                autoComplete="one-time-code"
+                                className="h-12 sm:h-14 md:h-16 w-full rounded-lg border border-zinc-300 bg-white text-center text-base sm:text-lg md:text-xl text-zinc-900 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-200 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
                             />
                         )}
                     />
@@ -44,7 +54,7 @@ export default function VerifyOtpPage() {
 
                 <button
                     type="submit"
-                    className="w-full rounded-lg bg-blue-600 px-4 py-2.5 font-medium text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="w-full rounded-lg bg-blue-600 px-4 py-2.5 font-medium text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     Continue
                 </button>
