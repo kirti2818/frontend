@@ -1,11 +1,11 @@
 import axios from "axios";
-const baseURL = 'http://localhost:8080/api';
-// const baseURL = 'https://backend-3-yzs6.onrender.com/api';
 
-let token;
+// Prefer env-configured base URL; fallback to Next.js proxy path.
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "/api";
 
 const api = axios.create({
     baseURL,
-    withCredentials: true
-})
+    withCredentials: true,
+});
+
 export default api;
