@@ -1,4 +1,4 @@
-const API_PROXY_TARGET = process.env.API_PROXY_TARGET || "https://backend-3-yzs6.onrender.com";
+const API_PROXY_TARGET = "https://backend-3-yzs6.onrender.com";
 
 const nextConfig = {
   async rewrites() {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// Prefer env-configured base URL; fallback to Next.js proxy path.
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "/api";
+// Use Next.js rewrite proxy for first-party cookies.
+const baseURL = "/api";
 
 const api = axios.create({
     baseURL,
