@@ -18,7 +18,7 @@ const useResendOtp = ()=>{
         onError:(error)=>{
             toast(error.response.data.message,{
                 position:'top-right',
-                type:'success',
+                type:'error',
                 autoClose : 5000
             })
         }

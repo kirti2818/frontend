@@ -1,12 +1,12 @@
 import { toast } from "react-toastify";
 import useVerifyOtp from "../../hooks/mutations/useVerifyOtp";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useResendOtp from "../../hooks/mutations/useResendOtp";
+import { useState } from "react";
 
 const VerifyOtp = () => {
-    const { mutate: verifyOTP } = useVerifyOtp()
-    const {mutate: resendOtp} = useResendOtp()
+    const { mutate: verifyOTP, isPending: verifyOTPLoading } = useVerifyOtp()
+    const { mutate: resendOtp, isPending: resendOtpLoading } = useResendOtp()
     const [otp, setOtp] = useState('')
     const router = useRouter()
 
@@ -26,18 +26,24 @@ const VerifyOtp = () => {
             })
 
         }
-        verifyOTP({ otp },{
-            onSuccess:()=>{
-                   router.push('/')
+        verifyOTP({ otp }, {
+            onSuccess: () => {
+                setOtp('')
+                router.push('/')
             }
         })
 
     };
 
-    const handleResendOtp = ()=>{
-        resendOtp()
+    const handleResendOtp = () => {
+        resendOtp({}, {
+            onSettled:()=>{
+                setOtp('')
+            }
+        })
+
     };
 
-    return { handleSubmit, handleChange,otp,handleResendOtp };
+    return { handleSubmit, handleChange, otp, handleResendOtp, verifyOTPLoading, resendOtpLoading };
 }
 export default VerifyOtp;

@@ -1,8 +1,7 @@
 "use client";
-
 import Link from "next/link";
 
-export default function AuthCard({ title, subtitle, altLink, children }) {
+export default function AuthCard({ title, subtitle, altLink, children,loading }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 py-8 dark:bg-black">
       <div className="w-full max-w-md rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 sm:p-8">
@@ -19,7 +18,7 @@ export default function AuthCard({ title, subtitle, altLink, children }) {
         {altLink ? (
           <p className="mt-6 text-center text-sm text-zinc-600 dark:text-zinc-400">
             {altLink.text}
-            <Link className="ml-1 font-medium text-blue-600 hover:underline" href={altLink.href}>
+            <Link className={`ml-1 font-medium text-blue-600 hover:underline ${loading && 'pointer-events-none hover:no-underline'} `} href={altLink.href}>
               {altLink.label}
             </Link>
           </p>
