@@ -39,6 +39,7 @@ const VerifyOtp = () => {
                     expiry: Date.now() + 60 * 1000 // 1 minute
                 }))
                 router.push('/')
+                router.refresh()
             }
         })
 
