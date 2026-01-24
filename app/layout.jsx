@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import TanstackProvider from "./providers/Tanstack.provider";
+import ReduxProviderWrapper from "./providers/Store.provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ToastContainer />
-        <TanstackProvider>{children}</TanstackProvider>
+        <TanstackProvider>
+          <ReduxProviderWrapper> {children} </ReduxProviderWrapper>
+        </TanstackProvider>
       </body>
     </html>
   );

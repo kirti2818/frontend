@@ -1,9 +1,13 @@
-import React from 'react'
+import { cookies } from 'next/headers'
+import PrivateRouter from '../components/PrivateRouter'
 
-const PrivateLayout = ({children}) => {
+const layout = async({children}) => {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value ?? '';
+    
   return (
-    children
+    <PrivateRouter token = {token}>{children}</PrivateRouter>
   )
 }
 
-export default PrivateLayout
+export default layout

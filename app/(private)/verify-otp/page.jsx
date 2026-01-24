@@ -1,9 +1,10 @@
 'use client';
 import AuthCard from "../../components/AuthCard";
+import PrivateRouter from "../../components/PrivateRouter";
 import VerifyOtp from "./verify-otp";
 import OtpInput from "react-otp-input";
 
-export default function VerifyOtpPage() {
+function VerifyOtpPage() {
     const { handleSubmit, handleChange, otp, handleResendOtp, verifyOTPLoading, resendOtpLoading } = VerifyOtp();
     return (
         <AuthCard
@@ -64,3 +65,4 @@ export default function VerifyOtpPage() {
         </AuthCard>
     );
 }
+export default VerifyOtpPage

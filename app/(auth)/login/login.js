@@ -1,12 +1,15 @@
 import { useState } from "react";
 import useLogin from "../../hooks/mutations/useLogin";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../slices/auth.slice";
 
 const Login = ()=>{
     // const [formData,setFormData] = useState({email : {value : '', error : false}, password : {value : '', error : false}});
     const [showPassword, setShowPassword] = useState(false);
     const {mutate : loginUser} = useLogin()
     const router =  useRouter()
+    const dispatch = useDispatch()
 
     // const handleFormData = (e)=>{
     //      e.preventDefault();
@@ -20,7 +23,8 @@ const Login = ()=>{
         //     return setFormData({email : {...formData.email , error : !formData.email.value}, password : {...formData.password, error : !formData.password.value}})
         // }
         loginUser(formData,{
-            onSuccess : ()=>{
+            onSuccess : (data)=>{
+                dispatch(setToken(data.token))
                 router.push('/verify-otp')
 
             }

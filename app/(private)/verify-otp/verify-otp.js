@@ -3,12 +3,15 @@ import useVerifyOtp from "../../hooks/mutations/useVerifyOtp";
 import { useRouter } from "next/navigation";
 import useResendOtp from "../../hooks/mutations/useResendOtp";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../slices/auth.slice";
 
 const VerifyOtp = () => {
     const { mutate: verifyOTP, isPending: verifyOTPLoading } = useVerifyOtp()
     const { mutate: resendOtp, isPending: resendOtpLoading } = useResendOtp()
     const [otp, setOtp] = useState('')
     const router = useRouter()
+    const dispatch = useDispatch();
 
     const handleChange = (event) => {
         setOtp(event)
@@ -27,8 +30,10 @@ const VerifyOtp = () => {
 
         }
         verifyOTP({ otp }, {
-            onSuccess: () => {
+            onSuccess: (data) => {
                 setOtp('')
+                console.log(data, "OTP VERFIED SUCCESSFULLY");
+                dispatch(setToken(data.token))
                 router.push('/')
             }
         })
