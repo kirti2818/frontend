@@ -11,7 +11,7 @@ const PrivateRouter = ({ children, token }) => {
     const path = usePathname()
 
     useEffect(() => {
-        const storedToken = localStorage.getItem('token');
+        const storedToken = localStorage.getItem('token')?.token;
         console.log("IN", cookie,storedToken)
         if (!cookie && !storedToken) {
             return router.push('/login')
