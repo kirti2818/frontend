@@ -32,7 +32,7 @@ const VerifyOtp = () => {
         verifyOTP({ otp }, {
             onSuccess: (data) => {
                 setOtp('')
-                router.push('/')
+                router.push('/chat')
                 router.refresh()
             }
         })

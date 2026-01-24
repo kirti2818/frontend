@@ -10,7 +10,7 @@ const AuthRouter = ({children,token}) => {
         if(token){
             console.log("token",token);
             
-            if(path === '/login' || path === '/signup') return router.push('/')
+            if(path === '/login' || path === '/signup') return router.push('/chat')
 
         }
 

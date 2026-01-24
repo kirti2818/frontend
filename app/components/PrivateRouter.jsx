@@ -19,7 +19,7 @@ const PrivateRouter = ({ children, token }) => {
         const decodeCookie = cookie ? jwtDecode(cookie) : {}
 
         if (path !== '/verify-otp' && !decodeCookie.is_email_verified) return router.push('/verify-otp')
-        if (path === '/verify-otp' && decodeCookie.is_email_verified) return router.push('/')
+        if (path === '/verify-otp' && decodeCookie.is_email_verified) return router.push('/chat')
         if (path === '/verify-otp' && !decodeCookie.is_email_verified) return;
 
 
