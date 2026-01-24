@@ -33,7 +33,11 @@ const VerifyOtp = () => {
             onSuccess: (data) => {
                 setOtp('')
                 console.log(data, "OTP VERFIED SUCCESSFULLY");
-                dispatch(setToken(data.token))
+                let token = data.token
+                localStorage.setItem('token', JSON.stringify({
+                    token,
+                    expiry: Date.now() + 60 * 1000 // 1 minute
+                }))
                 router.push('/')
             }
         })

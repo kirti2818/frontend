@@ -24,6 +24,11 @@ const Login = ()=>{
         // }
         loginUser(formData,{
             onSuccess : (data)=>{
+                let token = data.token;
+                localStorage.setItem('token', JSON.stringify({
+                    token,
+                    expiry: (new Date()).getTime() + 60 * 1000 // 1 minute
+                }))
                 dispatch(setToken(data.token))
                 router.push('/verify-otp')
 
