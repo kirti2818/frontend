@@ -32,12 +32,6 @@ const VerifyOtp = () => {
         verifyOTP({ otp }, {
             onSuccess: (data) => {
                 setOtp('')
-                console.log(data, "OTP VERFIED SUCCESSFULLY");
-                let token = data.token
-                localStorage.setItem('token', JSON.stringify({
-                    token,
-                    expiry: Date.now() + 60 * 1000 // 1 minute
-                }))
                 router.push('/')
                 router.refresh()
             }
