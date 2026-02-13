@@ -26,7 +26,7 @@ const useChatCommon = () => {
         timeRef.current = setTimeout(() => {
             dispatch(setSearchQuery(event.target.value))
 
-        }, 5000);
+        }, 2000);
 
     }
 
