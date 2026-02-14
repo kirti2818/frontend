@@ -27,7 +27,6 @@ const Login = () => {
             onSuccess: () => {
                 router.push('/verify-otp')
                 if (!socket.connected) socket.connect();
-                socket.emit("join_user");
                 socket.on("connect_error", (err) => {
                     toast.error('Socket not connected !')
                     console.log("Socket error:", err.message);

@@ -2,7 +2,7 @@
 import useSearch from './search'
 
 const Page = () => {
-  const {searchUser,searchUserLoading,searchQuery} = useSearch()
+  const {searchUser,searchUserLoading,searchQuery, handleStartConversation} = useSearch()
   return (
     <div className="min-h-screen w-full flex flex-col">
 
@@ -12,7 +12,7 @@ const Page = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {!searchQuery && <p>Type name to find User</p> }
             {!searchUserLoading && searchUser.map(p => (
-              <div key={p._id} className="flex items-center gap-3 p-3 rounded-lg border border-gray-200/40 dark:border-gray-700/40 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 cursor-default">
+              <div onClick={()=>handleStartConversation(p)} key={p._id} className="flex items-center gap-3 p-3 rounded-lg border border-gray-200/40 dark:border-gray-700/40 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 cursor-default">
                 <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-medium">
                   {p.name.split(' ').map(w => w[0]).slice(0,2).join('')}
                       
