@@ -21,7 +21,7 @@ const useChat = () => {
 
     return () => {
       socket.off("receive_message");
-      socket.disconnect();
+      // socket.disconnect();
     };
   } ,[])
 
@@ -41,8 +41,7 @@ const useChat = () => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    console.log("Message Sent", message);
-    socket.emit("send_message", { content: message, to: "receiver_user_id" });
+    socket.emit("send_message", { content: message, to: chatUser?._id });
     setMessage('')
   }
 
