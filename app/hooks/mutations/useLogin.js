@@ -9,6 +9,7 @@ const useLogin = () => {
             return response.data;
         },
         onSuccess:(data)=>{
+           if (data?.token) localStorage.setItem('token', data.token)
             toast(data.message,{
                 position:'top-right',
                 type:'success',

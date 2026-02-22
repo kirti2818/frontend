@@ -31,6 +31,7 @@ const VerifyOtp = () => {
         }
         verifyOTP({ otp }, {
             onSuccess: (data) => {
+                if (data?.token) localStorage.setItem('token', data.token)
                 setOtp('')
                 router.push('/chat')
                 router.refresh()
