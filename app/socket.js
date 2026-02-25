@@ -1,11 +1,12 @@
 import { io } from "socket.io-client";
-// const baseURL = 'http://localhost:8080';
+const token = (typeof window !== 'undefined') ? localStorage.getItem('token') : null;
 const baseURL = 'https://backend-3-yzs6.onrender.com'
 const socket = io(baseURL, {
-    autoConnect: false,
-    transports: ['polling', 'websocket'],
-    withCredentials: true,
-    reconnection: true
+  // allow polling fallback so connection can still work when websocket upgrade isn't proxied
+  transports: ['polling', 'websocket'],
+  auth: token ? { token } : undefined,
+  reconnection: true,
+  withCredentials: true,
+  autoConnect: false,
 });
-
-export default socket
+export default socket;
