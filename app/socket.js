@@ -4,11 +4,12 @@ const baseURL = 'https://backend-3-yzs6.onrender.com'
 // const baseURL = "http://localhost:8080";
 const socket = io(baseURL, {
   transports: ['websocket', 'polling'], // ✅ allow fallback
-  reconnection: true,
-  reconnectionAttempts: 5,
-  reconnectionDelay: 1000,
+  // reconnection: true,
+  // reconnectionAttempts: 5,
+  // reconnectionDelay: 1000,
   auth: token ? { token } : undefined,
   withCredentials: true,
+  autoConnect: false
 });
 export default socket;
 
