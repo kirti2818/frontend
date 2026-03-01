@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import useSettings from './settings';
 
 export default function SettingsPage(){
+  const {handleLogout} = useSettings()
   const [name, setName] = useState('John Doe')
   const [email, setEmail] = useState('john@example.com')
   const [avatarPreview, setAvatarPreview] = useState('')
@@ -73,7 +75,7 @@ export default function SettingsPage(){
             <p className="text-xs text-gray-500 mb-4">You will be logged out of this device. This action won't delete your account.</p>
             <div className="flex justify-end gap-2">
               <button onClick={()=>setShowLogoutConfirm(false)} className="px-3 py-2 rounded border border-gray-200 dark:border-gray-700">No</button>
-              <button onClick={()=>{ setShowLogoutConfirm(false); }} className="px-3 py-2 rounded bg-red-600 text-white">Yes, logout</button>
+              <button onClick={handleLogout} className="px-3 py-2 rounded bg-red-600 text-white">Yes, logout</button>
             </div>
           </div>
         </div>
