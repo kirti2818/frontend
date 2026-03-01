@@ -1,36 +1,5 @@
-'use client';
-import useChat from "../(private)/chat/chat";
 
-const mockMessages = [
-  { id: 1, from: 'them', text: 'Hey! How are you?' },
-  { id: 2, from: 'me', text: "I'm good, thanks!" },
-  { id: 3, from: 'them', text: 'Want to meet later?' },
-  { id: 4, from: 'me', text: 'Sure, sounds great.' },
-  { id: 5, from: 'them', text: 'See you at 6.' },
-  { id: 6, from: 'them', text: 'Hey! How are you?' },
-  { id: 7, from: 'me', text: "I'm good, thanks!" },
-  { id: 8, from: 'them', text: 'Want to meet later?' },
-  { id: 9, from: 'me', text: 'Sure, sounds great.' },
-  { id: 10, from: 'them', text: 'See you at 6.' },
-  { id: 11, from: 'them', text: 'Hey! How are you?' },
-  { id: 12, from: 'me', text: "I'm good, thanks!" },
-  { id: 13, from: 'them', text: 'Want to meet later?' },
-  { id: 14, from: 'me', text: 'Sure, sounds great.' },
-  { id: 15, from: 'them', text: 'See you at 6.' },
-  { id: 16, from: 'them', text: 'Hey! How are you?' },
-  { id: 17, from: 'me', text: "I'm good, thanks!" },
-  { id: 18, from: 'them', text: 'Want to meet later?' },
-  { id: 19, from: 'me', text: 'Sure, sounds great.' },
-  { id: 20, from: 'them', text: 'See you at 6.' },
-  { id: 21, from: 'them', text: 'Hey! How are you?' },
-  { id: 22, from: 'me', text: "I'm good, thanks!" },
-  { id: 23, from: 'them', text: 'Want to meet later?' },
-  { id: 24, from: 'me', text: 'Sure, sounds great.' },
-  { id: 25, from: 'them', text: 'See you at 6.' },
-]
-
-const ChatConversation = () => {
-  const { sendMessage, handleTypeMessage, message, chatWith } = useChat()
+const ChatConversation = ({sendMessage, handleTypeMessage, message, chatWith,chatFetched,fetchMsgsLoading,fetchMsgsError,currentUserDetail}) => {
   
   if (!chatWith?.name) {
     return (
@@ -63,10 +32,10 @@ const ChatConversation = () => {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-2">
-        {mockMessages.map(m => (
-          <div key={m.id} className={`flex ${m.from === 'me' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[75%] sm:max-w-[60%] rounded-2xl px-3 py-2 text-sm shadow-sm ${m.from === 'me' ? 'bg-blue-600 text-white rounded-br-sm' : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-sm'}`}>
-              {m.text}
+        {!fetchMsgsLoading && !fetchMsgsError &&  chatFetched.map(m => (
+          <div key={m._id} className={`flex ${m.user_id === currentUserDetail?._id ? 'justify-end' : 'justify-start'}`}>
+            <div className={`max-w-[75%] sm:max-w-[60%] rounded-2xl px-3 py-2 text-sm shadow-sm ${m.user_id === currentUserDetail?._id ? 'bg-blue-600 text-white rounded-br-sm' : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-sm'}`}>
+              {m.message}
             </div>
           </div>
         ))}

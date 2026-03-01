@@ -1,10 +1,4 @@
-'use client';
-
-import useChat from "../(private)/chat/chat";
-
-const ChatSidebar = ({ onSelect }) => {
-  const {chatList, allChatLoading} = useChat()
-  console.log(chatList)
+const ChatSidebar = ({chatList, allChatLoading, onSelectChat}) => {
   
   return (
     <aside className="h-full w-full md:w-80 lg:w-96 border-r border-gray-200/40 dark:border-gray-700/40 bg-white/50 dark:bg-black/30 overflow-y-scroll">
@@ -22,7 +16,7 @@ const ChatSidebar = ({ onSelect }) => {
               <button
                 key={chat._id}
                 type="button"
-                onClick={() => onSelect && onSelect(chat)}
+                onClick={() => onSelectChat(chat)}
                 className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100/60 dark:hover:bg-gray-800/60 cursor-pointer text-left"
               >
                 <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-medium">

@@ -1,9 +1,9 @@
 import { usePathname, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setSearchQuery } from "../../slices/search.slice";
+import { setSearchQuery } from "../slices/search.slice";
 
-const useChatCommon = () => {
+const useCommon = () => {
     const pathname = usePathname()
     const router = useRouter()
     const isSearchPage = pathname === '/chat/search'
@@ -35,4 +35,4 @@ const useChatCommon = () => {
 
 }
 
-export default useChatCommon;
+export default useCommon;
